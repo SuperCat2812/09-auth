@@ -14,15 +14,14 @@ const AuthProvider = ({ children }: Props) => {
   const clearIsAuthenticated = useUserToken((state) => state.clearUser);
   useEffect(() => {
     const fetchUser = async () => {
+      const isAuthenticated = await checkServerSession();
+      if (!isAuthenticated) {
+        clearIsAuthenticated();
+        return;
+      }
       try {
-        const isAuthenticated = await checkServerSession();
-        if (!isAuthenticated) {
-          clearIsAuthenticated();
-          return;
-        }
         const user = await getMe();
-
-        if (user) setUser(user);
+        setUser(user);
       } catch {
         clearIsAuthenticated();
       }
