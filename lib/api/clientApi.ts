@@ -75,10 +75,14 @@ export const loginUser = async (userData: UserData): Promise<User> => {
   return data;
 };
 
-export const checkServerSession = async () => {
-  const res = await api.get("/auth/session");
+export const checkServerSession = async (): Promise<boolean> => {
+  try {
+    const res = await api.get("/auth/session");
 
-  return res;
+    return Boolean(res.data?.authenticated);
+  } catch {
+    return false;
+  }
 };
 export const getMe = async () => {
   const { data } = await api.get<User>("/users/me");
