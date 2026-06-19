@@ -14,14 +14,11 @@ const AuthProvider = ({ children }: Props) => {
   const clearIsAuthenticated = useUserToken((state) => state.clearUser);
   useEffect(() => {
     const fetchUser = async () => {
-      // Перевіряємо сесію
       const isAuthenticated = await checkServerSession();
       if (isAuthenticated) {
-        // Якщо сесія валідна — отримуємо користувача
         const user = await getMe();
         if (user) setUser(user);
       } else {
-        // Якщо сесія невалідна — чистимо стан
         clearIsAuthenticated();
       }
     };
