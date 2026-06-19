@@ -1,9 +1,9 @@
 "use client";
 import Loading from "@/app/loading";
-import ErrorRoute from "@/app/notes/error";
+import ErrorRoute from "@/app/(private routes)/notes/error";
 import Modal from "@/components/Modal/Modal";
 import NoteDetailsClient from "@/components/NoteDetailsClient/NoteDetailsClient";
-import { fetchNoteById } from "@/lib/api";
+import { fetchNoteById } from "@/lib/api/clientApi";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 

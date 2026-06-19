@@ -1,5 +1,6 @@
 import Link from "next/link";
 import css from "./Header.module.css";
+import AuthNavigation from "../AuthNavigation/AuthNavigation";
 export default function Header() {
   return (
     <header className={css.header}>
@@ -11,20 +12,21 @@ export default function Header() {
       </Link>
       <nav aria-label="Main Navigation">
         <ul className={css.navigation}>
-          <li>
+          <li className={css.navigationItem}>
             <Link
               href="/"
               className={css.navigationLink}>
               Home
             </Link>
           </li>
-          <li>
+          <li className={css.navigationItem}>
             <Link
               href="/notes/filter/all"
               className={css.navigationLink}>
               Notes
             </Link>
           </li>
+          <AuthNavigation />
         </ul>
       </nav>
     </header>
