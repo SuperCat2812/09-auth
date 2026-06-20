@@ -8,13 +8,12 @@ import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import css from "./NotesPage.module.css";
 import { TagValue } from "@/types/note";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface NotesClientProps {
   tag: TagValue | undefined;
 }
 export default function NotesClient({ tag }: NotesClientProps) {
-  const router = useRouter();
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const updateQuery = useDebouncedCallback((query) => {
@@ -42,11 +41,11 @@ export default function NotesClient({ tag }: NotesClientProps) {
             query={query}
             updateQuery={updateQuery}
           />
-          <button
+          <Link
             className={css.button}
-            onClick={() => router.push("/notes/action/create")}>
+            href={"/notes/action/create"}>
             Create
-          </button>
+          </Link>
         </header>
         {totalPage > 1 && (
           <Pagination

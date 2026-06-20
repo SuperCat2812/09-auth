@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import css from "./SignInPage.module.css";
 import { useState } from "react";
 import { loginUser, UserData } from "@/lib/api/clientApi";
-import { ApiError } from "@/app/api/api";
 import { useUserToken } from "@/lib/store/authStore";
 
 export default function SignInPage() {
@@ -20,12 +19,8 @@ export default function SignInPage() {
 
       setUser(user);
       router.push("/profile");
-    } catch (error) {
-      setError(
-        (error as ApiError).response?.data?.error ??
-          (error as ApiError).message ??
-          "Oops... some error",
-      );
+    } catch {
+      setError("Oops... some error");
     }
   };
   return (

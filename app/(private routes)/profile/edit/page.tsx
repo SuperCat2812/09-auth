@@ -1,13 +1,14 @@
 "use client";
 import Image from "next/image";
 import css from "./EditProfilePage.module.css";
-
 import { useUserToken } from "@/lib/store/authStore";
 import { ChangeEvent, FormEvent } from "react";
 import { updateMe } from "@/lib/api/clientApi";
+import { useRouter } from "next/navigation";
 
 export default function EditPage() {
   const { user, setUser } = useUserToken();
+  const router = useRouter();
   const HandlerChangeUserName = (e: ChangeEvent<HTMLInputElement>) => {
     if (!user) return;
 
@@ -23,6 +24,10 @@ export default function EditPage() {
     });
 
     setUser(updatedUser);
+    router.back();
+  };
+  const handleCancel = () => {
+    router.back();
   };
   return (
     <main className={css.mainContent}>
@@ -62,7 +67,8 @@ export default function EditPage() {
             </button>
             <button
               type="button"
-              className={css.cancelButton}>
+              className={css.cancelButton}
+              onClick={handleCancel}>
               Cancel
             </button>
           </div>

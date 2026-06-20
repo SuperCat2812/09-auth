@@ -8,7 +8,7 @@ export default function AuthNavigation() {
   const { user, isAuth, clearUser } = useUserToken();
   const router = useRouter();
   console.log(isAuth);
-  const handelLogout = async () => {
+  const handleLogout = async () => {
     await logout();
     clearUser();
     router.push("/sign-in");
@@ -27,7 +27,7 @@ export default function AuthNavigation() {
         <p className={css.userEmail}>User email:{user?.email}</p>
         <button
           className={css.logoutButton}
-          onClick={handelLogout}>
+          onClick={handleLogout}>
           Logout
         </button>
       </li>

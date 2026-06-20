@@ -15,6 +15,7 @@ export const fetchNotes = async ({
   perPage,
   sortBy,
 }: NoteParams): Promise<Notes> => {
+  const cookieStore = await cookies();
   const params = search
     ? {
         page,
@@ -32,6 +33,9 @@ export const fetchNotes = async ({
 
   const { data } = await api.get<Notes>("/notes", {
     params,
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
   });
 
   return data;
