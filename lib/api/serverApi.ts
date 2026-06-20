@@ -4,7 +4,10 @@ import { NoteParams, Notes } from "./clientApi";
 import { cookies } from "next/headers";
 import { User } from "@/types/user";
 export const fetchNoteById = async (id: Note["id"]): Promise<Note> => {
-  const { data } = await api.get<Note>(`/notes/${id}`);
+  const cookieStore = await cookies();
+  const { data } = await api.get<Note>(`/notes/${id}`, {
+    headers: { Cookie: cookieStore.toString() },
+  });
   return data;
 };
 
