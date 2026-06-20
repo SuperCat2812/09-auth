@@ -24,7 +24,7 @@ export default function EditPage() {
     });
 
     setUser(updatedUser);
-    router.back();
+    router.push("/profile");
   };
   const handleCancel = () => {
     router.back();
