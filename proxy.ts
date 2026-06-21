@@ -56,6 +56,7 @@ export async function proxy(request: NextRequest) {
         }
       }
     }
+
     if (isPublicRoute) {
       return NextResponse.next();
     }

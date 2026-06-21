@@ -7,7 +7,7 @@ import { logout } from "@/lib/api/clientApi";
 export default function AuthNavigation() {
   const { user, isAuth, clearUser } = useUserToken();
   const router = useRouter();
-  console.log(isAuth);
+
   const handleLogout = async () => {
     await logout();
     clearUser();
